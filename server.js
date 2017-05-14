@@ -12,9 +12,17 @@ app.get('/', function (req, res) {
 
 app.post('/uploads', upload.single('file-input'), function(req, res) {
     if (req) {
-        res.send('Hi!');
+        
+        var data = {
+            'File Size': req.file["size"].toString() + ' ' + 'bytes'
+        }
+        
+        res.send(JSON.stringify(data));
+        
     } else {
-        res.send('No');
+        
+        res.send('There was an error uploading the file');
+        
     }
 });
 
