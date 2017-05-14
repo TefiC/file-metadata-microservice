@@ -11,17 +11,20 @@ app.get('/', function (req, res) {
 })
 
 app.post('/uploads', upload.single('file-input'), function(req, res) {
+    
+    res.writeHead(200, {'content-type': 'application/JSON'});
+    
     if (req) {
         
         var data = {
             'File Size': req.file["size"].toString() + ' ' + 'bytes'
         }
         
-        res.send(JSON.stringify(data));
+        res.end(JSON.stringify(data));
         
     } else {
         
-        res.send('There was an error uploading the file');
+        res.end('There was an error uploading the file');
         
     }
 });
